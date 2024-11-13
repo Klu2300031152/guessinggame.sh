@@ -1,0 +1,29 @@
+mkdir guessing-game
+cd guessing-game
+nano guessinggame.sh
+#!/bin/bash
+
+# Count the number of files in the current directory
+file_count=$(ls -1 | wc -l)
+
+# Function to prompt the user for guesses
+function guess {
+    echo "Guess the number of files in the current directory:"
+    read user_guess
+}
+
+# Loop until the user guesses the correct number
+while true; do
+    guess
+
+    # Check if the guess is correct, too high, or too low
+    if [[ $user_guess -lt $file_count ]]; then
+        echo "Your guess is too low."
+    elif [[ $user_guess -gt $file_count ]]; then
+        echo "Your guess is too high."
+    else
+        echo "Congratulations! You guessed the correct number of files: $file_count"
+        break
+    fi
+done
+chmod +x guessinggame.sh
